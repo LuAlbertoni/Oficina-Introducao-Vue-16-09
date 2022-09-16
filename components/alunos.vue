@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Lista de alunos (Componente):</h3>
-        <p v-for="aluno in lista">{{aluno}}</p>
+        <p v-for="aluno in lista">{{aluno.name}} <button>Remover aluno</button></p>
 
     </div>
 </template>
@@ -11,7 +11,7 @@ export default {
     name: "alunos",
     props: {
         lista: {
-            type: Array,
+            type: Object,
             required: true
         }
     }

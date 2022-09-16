@@ -3,7 +3,7 @@
     <h1>Título</h1>
 
     <h2>Lista de Alunos:</h2>
-    <p v-for="(aluno, index) in listaAlunos" :key="index">Aluno nº {{index}} - {{aluno}}</p>
+    <p v-for="(aluno, index) in listaAlunos" :key="index">Aluno nº {{index}} - {{aluno.name}} (ID: {{aluno.id}})</p>
 
     <h2>Lista de notas:</h2>
     <div v-if="exibirNotas === true">
@@ -14,13 +14,13 @@
     </div>
 
     <h2>Importação de componente:</h2>
-    <Alunos :lista="listaAlunos" />
+    <Alunos :lista="listaAlunos" @remover="removerAluno()"/>
 
     <h2>Input:</h2>
     <input type="text" v-model="aluno" />
     <button @click="addAluno(aluno)">Adicionar aluno</button>
 
-    <p>Primeiro da turma: {{priemiroDaTurma}}</p>
+    <p>Primeiro da turma: {{priemiroDaTurma.name}}</p>
   </section>
 </template>
 
@@ -37,7 +37,20 @@ export default {
   data() {
     return {
       aluno: "",
-      listaAlunos: ["Luís", "Lucas", "Wesley"],
+
+      listaAlunos: [{
+        id: '1',
+        name: 'Luís',
+      },
+      {
+        id: '2',
+        name: 'Marcos',
+      },
+      {
+        id: '3',
+        name: 'Pedro',
+      }],
+
       listaNotas: [5, 9, 2],
       exibirNotas: false
     }
@@ -47,6 +60,9 @@ export default {
       this.listaAlunos.push(aluno),
         this.aluno = ""
     },
+    removerAluno(aluno) {
+      alert(`Remover aluno: ${aluno}`)
+    }
   },
   computed: {
     priemiroDaTurma() {
@@ -64,5 +80,8 @@ export default {
 </script>
 
 <style>
-
+section {
+  background-color: #f2f2f2;
+  color: black;
+}
 </style>
