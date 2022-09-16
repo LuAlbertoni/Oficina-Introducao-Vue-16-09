@@ -14,7 +14,7 @@
     </div>
 
     <h2>Importação de componente:</h2>
-    <Alunos :lista="listaAlunos" @remover="removerAluno()"/>
+    <Alunos :lista="listaAlunos" @remover="removerAluno" />
 
     <h2>Input:</h2>
     <input type="text" v-model="aluno" />
@@ -57,11 +57,11 @@ export default {
   },
   methods: {
     addAluno(aluno) {
-      this.listaAlunos.push(aluno),
+      this.listaAlunos.push({ name: aluno, id: this.listaAlunos.length + 1 }),
         this.aluno = ""
     },
     removerAluno(aluno) {
-      alert(`Remover aluno: ${aluno}`)
+      alert(`Remover aluno: ${aluno.name}`)
     }
   },
   computed: {
