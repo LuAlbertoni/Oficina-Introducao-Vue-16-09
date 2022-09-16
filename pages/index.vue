@@ -14,7 +14,13 @@
     </div>
 
     <h2>Importação de componente:</h2>
-    <Alunos :lista="listaAlunos"/>
+    <Alunos :lista="listaAlunos" />
+
+    <h2>Input:</h2>
+    <input type="text" v-model="aluno" />
+    <button @click="addAluno(aluno)">Adicionar aluno</button>
+
+    <p>Primeiro da turma: {{priemiroDaTurma}}</p>
   </section>
 </template>
 
@@ -30,9 +36,28 @@ export default {
   },
   data() {
     return {
+      aluno: "",
       listaAlunos: ["Luís", "Lucas", "Wesley"],
       listaNotas: [5, 9, 2],
       exibirNotas: false
+    }
+  },
+  methods: {
+    addAluno(aluno) {
+      this.listaAlunos.push(aluno),
+        this.aluno = ""
+    },
+  },
+  computed: {
+    priemiroDaTurma() {
+      // Lógica
+      return this.listaAlunos[0]
+    }
+  },
+  // Escutar alterações
+  watch: {
+    listaAlunos(novoValor, velhoValor) {
+      alert("Lista foi alterada")
     }
   }
 }
